@@ -1,0 +1,31 @@
+{
+  "case_id": "fixture2_remove_observation_creates_ambiguity",
+  "comment": "M=4 hand-checkable. E1 residue 2 in {2,6}; E2 residue 1 in {5,9}. Gap o2 [4,7] admits only (E1,E2)=(2,9), so baseline forces E1=2 and R-MAND is PROVABLE_APPROVED. Pause o2 alone: E1 frees to {2,6} and R-MAND becomes INSUFFICIENT_EVIDENCE - removing one observation destroys the determination. R-SEALED on E2=9 is never inside the approval point 2. Pausing o4 instead cannot help (it is on the unrelated E3 anchor chain) and costs more.",
+  "generations": [
+    {
+      "generation_id": "G1",
+      "device": "isolated-box-B",
+      "modulus": 4,
+      "max_sequence": 9,
+      "anchors": [
+        {"anchor_id": "a1", "event_id": "E3", "sequence": 8}
+      ],
+      "observations": [
+        {"observation_id": "o1", "source_id": "S1", "event_id": "E1", "residue": 2},
+        {"observation_id": "o2", "source_id": "S1", "event_id": "E2", "residue": 1, "gap_min": 4, "gap_max": 7},
+        {"observation_id": "o3", "source_id": "S2", "event_id": "E1", "residue": 2},
+        {"observation_id": "o4", "source_id": "S2", "event_id": "E3", "residue": 0, "gap_min": 2, "gap_max": 6}
+      ],
+      "approvals": [
+        {"lo": 2, "hi": 2, "digest": "dgx-seal", "evidence_id": "app1"}
+      ],
+      "revocations": []
+    }
+  ],
+  "receipts": [
+    {"receipt_id": "R-MAND", "generation_id": "G1", "event_id": "E1", "digest": "dgx-seal", "mandatory": true},
+    {"receipt_id": "R-SEALED", "generation_id": "G1", "event_id": "E2", "digest": "dgx-seal", "sealed": true}
+  ],
+  "recheckable_observations": ["o2", "o4"],
+  "recheck_costs": {"o2": 1, "o4": 5}
+}

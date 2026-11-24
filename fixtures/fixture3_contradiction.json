@@ -1,0 +1,25 @@
+{
+  "case_id": "fixture3_contradiction_mus",
+  "comment": "M=4 hand-checkable contradiction. Anchor E0=0, o2 requires x(E1)-x(E0) in [3,4]; E1 residue 2 has candidates {2,6}, deltas {2,6}, so no value fits. The single observation o2 is already a replayable contradiction (it conflicts with the trusted anchor via its own gap), hence the minimal evidence set is [o2].",
+  "generations": [
+    {
+      "generation_id": "G1",
+      "device": "isolated-box-C",
+      "modulus": 4,
+      "max_sequence": 9,
+      "anchors": [
+        {"anchor_id": "a1", "event_id": "E0", "sequence": 0}
+      ],
+      "observations": [
+        {"observation_id": "o1", "source_id": "S1", "event_id": "E0", "residue": 0},
+        {"observation_id": "o2", "source_id": "S1", "event_id": "E1", "residue": 2, "gap_min": 3, "gap_max": 4}
+      ],
+      "approvals": [],
+      "revocations": []
+    }
+  ],
+  "receipts": [
+    {"receipt_id": "R1", "generation_id": "G1", "event_id": "E1", "digest": "dgx-x"}
+  ],
+  "recheckable_observations": ["o2"]
+}

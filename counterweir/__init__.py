@@ -1,0 +1,8 @@
+"""counterweir: synthetic sealed-receipt audit over generation sequence logs."""
+
+__version__ = "1.0.0"
+
+VERDICT_APPROVED = "PROVABLE_APPROVED"
+VERDICT_NOT_APPROVED = "PROVABLE_NOT_APPROVED"
+VERDICT_INSUFFICIENT = "INSUFFICIENT_EVIDENCE"
+VERDICT_CONTRADICTION = "CONTRADICTORY_EVIDENCE"

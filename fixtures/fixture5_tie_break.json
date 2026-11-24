@@ -1,0 +1,35 @@
+{
+  "case_id": "fixture5_repair_tie_break",
+  "comment": "M=4 lex tie-break demo. Two independent components (disjoint residue classes, disjoint events) are each contradictory. P: E0=0 r0, E1 anchored 2 r2, gap oP [3,4] cannot hold (delta 2 only). Q: E4=5 r1, E5 anchored 7 r3, gap oQ [1,1] cannot hold (delta 2 only). Trusted anchors are not recheckable, so mandatory receipts remain provably approved after pausing the faulty gap. Each singleton pause repairs only its own component; the unique minimum is {oP,oQ} cost 2 count 2.",
+  "generations": [
+    {
+      "generation_id": "G1",
+      "device": "isolated-box-E",
+      "modulus": 4,
+      "max_sequence": 9,
+      "anchors": [
+        {"anchor_id": "aP0", "event_id": "E0", "sequence": 0},
+        {"anchor_id": "aP1", "event_id": "E1", "sequence": 2},
+        {"anchor_id": "aQ0", "event_id": "E4", "sequence": 5},
+        {"anchor_id": "aQ1", "event_id": "E5", "sequence": 7}
+      ],
+      "observations": [
+        {"observation_id": "oP0", "source_id": "SP", "event_id": "E0", "residue": 0},
+        {"observation_id": "oP", "source_id": "SP", "event_id": "E1", "residue": 2, "gap_min": 3, "gap_max": 4},
+        {"observation_id": "oQ0", "source_id": "SQ", "event_id": "E4", "residue": 1},
+        {"observation_id": "oQ", "source_id": "SQ", "event_id": "E5", "residue": 3, "gap_min": 1, "gap_max": 1}
+      ],
+      "approvals": [
+        {"lo": 2, "hi": 2, "digest": "dgx-seal", "evidence_id": "app1"},
+        {"lo": 7, "hi": 7, "digest": "dgx-seal", "evidence_id": "app2"}
+      ],
+      "revocations": []
+    }
+  ],
+  "receipts": [
+    {"receipt_id": "R1", "generation_id": "G1", "event_id": "E1", "digest": "dgx-seal", "mandatory": true},
+    {"receipt_id": "R2", "generation_id": "G1", "event_id": "E5", "digest": "dgx-seal", "mandatory": true}
+  ],
+  "recheckable_observations": ["oP", "oQ"],
+  "recheck_costs": {"oP": 1, "oQ": 1}
+}

@@ -1,0 +1,35 @@
+{
+  "case_id": "fixture4_repair_nontrivial",
+  "comment": "M=4 hand-checkable repair with real search. Trusted anchor a3 pins E1=2 and is NOT recheckable, so R-MAND (approved exactly at sequence 2) stays provably approved under every legal repair. S1 gap o2 (E0=0 to E1) requires x(E1) in [1,2] and agrees with 2; S2 gap o4 (E1 to E3=8) requires 8-x(E1) in [1,2], contradicting the two anchors jointly: the minimal replayable contradiction is {a2,a3,o4} (no pair is inconsistent). Pausing o4 alone restores consistency at cost 1; o6 is a costly decoy whose pause never helps. The search must return the unique minimum {o4}, rejecting same-cost later id lists and any plan touching o6.",
+  "generations": [
+    {
+      "generation_id": "G1",
+      "device": "isolated-box-D",
+      "modulus": 4,
+      "max_sequence": 11,
+      "anchors": [
+        {"anchor_id": "a1", "event_id": "E0", "sequence": 0},
+        {"anchor_id": "a2", "event_id": "E3", "sequence": 8},
+        {"anchor_id": "a3", "event_id": "E1", "sequence": 2}
+      ],
+      "observations": [
+        {"observation_id": "o1", "source_id": "S1", "event_id": "E0", "residue": 0},
+        {"observation_id": "o2", "source_id": "S1", "event_id": "E1", "residue": 2, "gap_min": 1, "gap_max": 2},
+        {"observation_id": "o3", "source_id": "S2", "event_id": "E1", "residue": 2},
+        {"observation_id": "o4", "source_id": "S2", "event_id": "E3", "residue": 0, "gap_min": 1, "gap_max": 2},
+        {"observation_id": "o5", "source_id": "S3", "event_id": "E2", "residue": 3},
+        {"observation_id": "o6", "source_id": "S3", "event_id": "E1", "residue": 2, "gap_min": -3, "gap_max": -1}
+      ],
+      "approvals": [
+        {"lo": 2, "hi": 2, "digest": "dgx-seal", "evidence_id": "app1"}
+      ],
+      "revocations": []
+    }
+  ],
+  "receipts": [
+    {"receipt_id": "R-MAND", "generation_id": "G1", "event_id": "E1", "digest": "dgx-seal", "mandatory": true},
+    {"receipt_id": "R-SEALED", "generation_id": "G1", "event_id": "E2", "digest": "dgx-seal", "sealed": true}
+  ],
+  "recheckable_observations": ["o2", "o4", "o6"],
+  "recheck_costs": {"o2": 1, "o4": 1, "o6": 10}
+}

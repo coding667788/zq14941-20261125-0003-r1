@@ -1,0 +1,32 @@
+{
+  "case_id": "fixture1_two_lap_two_source",
+  "comment": "M=4 hand-checkable fixture. E1 (residue 2) alone could be x in {2,6,10}; source S2 ends at trusted anchor E3=10 and its gap eliminates exactly x(E1)=10, leaving {2,6}. Approval [6,7] spans two laps for residue-2 events. E2 residue 3, candidates {3,7,11}.",
+  "generations": [
+    {
+      "generation_id": "G1",
+      "device": "isolated-box-A",
+      "modulus": 4,
+      "max_sequence": 11,
+      "anchors": [
+        {"anchor_id": "a1", "event_id": "E3", "sequence": 10}
+      ],
+      "observations": [
+        {"observation_id": "o1", "source_id": "S1", "event_id": "E1", "residue": 2},
+        {"observation_id": "o2", "source_id": "S1", "event_id": "E2", "residue": 3, "gap_min": 1, "gap_max": 5},
+        {"observation_id": "o3", "source_id": "S2", "event_id": "E1", "residue": 2},
+        {"observation_id": "o4", "source_id": "S2", "event_id": "E3", "residue": 2, "gap_min": 4, "gap_max": 8}
+      ],
+      "approvals": [
+        {"lo": 6, "hi": 7, "digest": "dgx-alpha", "evidence_id": "app1"}
+      ],
+      "revocations": []
+    }
+  ],
+  "receipts": [
+    {"receipt_id": "R1", "generation_id": "G1", "event_id": "E1", "digest": "dgx-alpha"},
+    {"receipt_id": "R2", "generation_id": "G1", "event_id": "E2", "digest": "dgx-alpha"},
+    {"receipt_id": "R3", "generation_id": "G1", "event_id": "E1", "digest": "dgx-other"},
+    {"receipt_id": "R4", "generation_id": "G1", "event_id": "E2", "digest": "dgx-other"}
+  ],
+  "recheckable_observations": []
+}
